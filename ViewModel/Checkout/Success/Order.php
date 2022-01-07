@@ -92,6 +92,6 @@ class Order implements \Magento\Framework\View\Element\Block\ArgumentInterface
             return null;
         }
 
-        return $productImage = $this->imageHelper->init($product, 'thumbnail')->getUrl();
+        return $productImage = $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl();
     }
 }

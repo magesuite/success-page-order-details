@@ -13,7 +13,7 @@ $items = $viewModel->getItems();
         ?>
     <li class="cs-last-order-details__product">
         <span class="cs-last-order-details__thumbnail-wrapper">
-            <img class="lazyload" src="<?= $block->escapeUrl($productImageUrl) ?>" alt="<?= $block->escapeHtmlAttr($productName) ?>" />
+            <img loading="lazy" src="<?= $block->escapeUrl($productImageUrl) ?>" alt="<?= $block->escapeHtmlAttr($productName) ?>" />
         </span>
 
         <div class="cs-last-order-details__product-details">

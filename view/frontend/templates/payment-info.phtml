@@ -6,32 +6,32 @@ $billingAddress = $viewModel->getBillingAddress();
 $billingTelephoneNumber = $billingAddress->getTelephone()
 ?>
 
-<?php if ($billingAddress): ?>
+<?php if ($billingAddress) : ?>
     <div class="cs-last-order-details__box">
-        <span class="cs-last-order-details__box-title"><?= __('Billing Address'); ?></span>
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Billing Address'); ?></span>
         <div class="cs-last-order-details__box-content">
-            <address><?= $billingAddress->getName() ?><br>
-                <?php if (!empty($billingAddress->getCompany())):?>
-                    <?= $billingAddress->getCompany() ?><br>
+            <address><?= /* @noEscape */ $billingAddress->getName() ?><br>
+                <?php if (!empty($billingAddress->getCompany())) :?>
+                    <?= /* @noEscape */ $billingAddress->getCompany() ?><br>
                 <?php endif; ?>
-                <?= $viewModel->getStreetFull($billingAddress->getStreet()) ?><br>
-                <?= $billingAddress->getCity() ?>, <?= $billingAddress->getPostcode() ?><br>
-                <?= $viewModel->getCountryByCode($billingAddress->getCountryId()) ?>
-                <?php if (!empty($billingTelephoneNumber)):?>
+                <?= /* @noEscape */ $viewModel->getStreetFull($billingAddress->getStreet()) ?><br>
+                <?= /* @noEscape */ $billingAddress->getCity() ?>, <?= /* @noEscape */ $billingAddress->getPostcode() ?><br>
+                <?= /* @noEscape */ $viewModel->getCountryByCode($billingAddress->getCountryId()) ?>
+                <?php if (!empty($billingTelephoneNumber)) :?>
                 <br>
-                T: <a href="tel:<?= $billingTelephoneNumber ?>"><?= $billingTelephoneNumber ?></a>
+                T: <a href="tel:<?= /* @noEscape */ $billingTelephoneNumber ?>"><?= /* @noEscape */ $billingTelephoneNumber ?></a>
                 <?php endif; ?>
             </address>
         </div>
     </div>
 <?php endif; ?>
 
-<?php if (!empty($paymentMethod)): ?>
+<?php if (!empty($paymentMethod)) : ?>
     <div class="cs-last-order-details__box">
-        <span class="cs-last-order-details__box-title"><?= __('Payment Method'); ?></span>
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Payment Method'); ?></span>
         <div class="cs-last-order-details__box-content">
             <span class="cs-last-order-details__payment-method">
-                <?= $paymentMethod ?>
+                <?= /* @noEscape */ $paymentMethod ?>
             </span>
         </div>
     </div>

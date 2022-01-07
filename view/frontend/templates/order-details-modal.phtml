@@ -25,8 +25,8 @@
     style="display: none"
 >
     <div class="cs-custom-modal__close">
-        <?= $this->getLayout()
-            ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+        <?= $block->getLayout()
+            ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
             ->setIconUrl('images/icons/close.svg')
             ->setCssClass('cs-custom-modal__close-icon')
             ->setInlined(true)

@@ -4,32 +4,31 @@ $viewModel = $block->getViewModel();
 $shippingAddress = $viewModel->getShippingAddress();
 $shippingMethod = $viewModel->getShippingMethod();
 $shippingTelephoneNumber = $shippingAddress->getTelephone();
-
 ?>
 
-<?php if ($shippingAddress): ?>
+<?php if ($shippingAddress) : ?>
     <div class="cs-last-order-details__box">
-        <span class="cs-last-order-details__box-title"><?= __('Shipping address'); ?></span>
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping address'); ?></span>
         <div class="cs-last-order-details__box-content">
-            <address><?= $shippingAddress->getName() ?><br>
-                <?php if (!empty($shippingAddress->getCompany())):?>
-                    <?= $shippingAddress->getCompany() ?><br>
+            <address><?= /* @noEscape */ $shippingAddress->getName() ?><br>
+                <?php if (!empty($shippingAddress->getCompany())) :?>
+                    <?= /* @noEscape */ $shippingAddress->getCompany() ?><br>
                 <?php endif; ?>
-                <?= $viewModel->getStreetFull($shippingAddress->getStreet()) ?><br>
-                <?= $shippingAddress->getCity() ?>, <?= $shippingAddress->getPostcode() ?><br>
-                <?= $viewModel->getCountryByCode($shippingAddress->getCountryId()) ?>
-                <?php if (!empty($shippingTelephoneNumber)):?>
+                <?= /* @noEscape */ $viewModel->getStreetFull($shippingAddress->getStreet()) ?><br>
+                <?= /* @noEscape */ $shippingAddress->getCity() ?>, <?= /* @noEscape */ $shippingAddress->getPostcode() ?><br>
+                <?= /* @noEscape */ $viewModel->getCountryByCode($shippingAddress->getCountryId()) ?>
+                <?php if (!empty($shippingTelephoneNumber)) :?>
                 <br>
-                T: <a href="tel:<?= $shippingTelephoneNumber ?>"><?= $shippingTelephoneNumber ?></a>
+                T: <a href="tel:<?= /* @noEscape */ $shippingTelephoneNumber ?>"><?= /* @noEscape */ $shippingTelephoneNumber ?></a>
                 <?php endif; ?>
             </address>
         </div>
     </div>
 <?php endif; ?>
 
-<?php if (!empty($shippingMethod)): ?>
+<?php if (!empty($shippingMethod)) : ?>
     <div class="cs-last-order-details__box">
-        <span class="cs-last-order-details__box-title"><?= __('Shipping Method'); ?></span>
-        <div class="cs-last-order-details__box-content"><?= $shippingMethod ?></div>
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping Method'); ?></span>
+        <div class="cs-last-order-details__box-content"><?= /* @noEscape */ $shippingMethod ?></div>
     </div>
 <?php endif; ?>

@@ -13,6 +13,7 @@
                 <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>cs-csfeature__logo</frontend_class>
                     <comment>Adds modal containing order details to Success Page</comment>
                 </field>
             </group>

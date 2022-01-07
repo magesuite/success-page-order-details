@@ -1,7 +1,7 @@
 <?php
     $viewModel = $block->getViewModel();
 
-    echo $this->getLayout()
+    echo $block->getLayout()
         ->createBlock(\Magento\Sales\Block\Order\Totals::class)
         ->setOrder($viewModel->getOrder())
         ->setTemplate('Magento_Sales::order/totals.phtml')

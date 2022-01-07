@@ -1,7 +1,8 @@
 <?php
-    $viewModel = $block->getViewModel();
-    $order = $viewModel->getOrder();
-    $orderId = $order->getRealOrderId();
+/** @var \MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order $viewModel */
+$viewModel = $block->getViewModel();
+$order = $viewModel->getOrder();
+$orderId = $order->getRealOrderId();
 ?>
 <button class="cs-last-order-details__button">
     <span><?= /* @noEscape */ __('See order details'); ?></span>

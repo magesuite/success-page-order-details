@@ -1,0 +1,34 @@
+<?php
+    $viewModel = $block->getViewModel();
+    $items = $viewModel->getItems();
+?>
+<ol class="cs-last-order-details__products">
+<?php
+    foreach ($items as $orderItem):
+
+    $product = $orderItem->getProduct();
+    $productManufacturer = $product->getData('manufacturer') ? $product->getAttributeText('manufacturer') : '';
+    $productSerie = $product->getData('produkt_serie') ? $product->getAttributeText('produkt_serie') : '';
+    $productImageUrl = $viewModel->getImageUrl($product);
+    $productName = $orderItem->getName();
+    $qty = intval($orderItem->getQtyOrdered(), 10);
+    $productPrice = $product->getFormattedPrice();
+?>
+    <li class="cs-last-order-details__product">
+        <span class="cs-last-order-details__thumbnail-wrapper">
+            <img class="lazyload" src="<?= $productImageUrl ?>" alt="<?=$productName ?>" />
+        </span>
+
+        <div class="cs-last-order-details__product-details">
+            <div class="cs-last-order-details__product-brand"><?= $productManufacturer ?></div>
+            <div class="cs-last-order-details__product-serie"><?= $productSerie ?></div>
+            <div class="cs-last-order-details__product-name"><?= $productName ?></div>
+            <div class="cs-last-order-details__product-qty">
+                <span class="cs-last-order-details__qty-label"><?= __('Qty') ?></span>
+                <span class="cs-last-order-details__qty"><?= $qty ?></span>
+            </div>
+            <span class="cs-last-order-details__product-price"><?= $productPrice ?></span>
+        </div>
+    </li>
+<?php endforeach; ?>
+</ol>

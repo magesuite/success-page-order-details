@@ -1,0 +1,34 @@
+<?php
+/** @var \MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order $viewModel */
+$viewModel = $block->getViewModel();
+$shippingAddress = $viewModel->getShippingAddress();
+$shippingMethod = $viewModel->getShippingMethod();
+$shippingTelephoneNumber = $shippingAddress->getTelephone();
+?>
+
+<?php if ($shippingAddress) : ?>
+    <div class="cs-last-order-details__box">
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping address'); ?></span>
+        <div class="cs-last-order-details__box-content">
+            <address><?= /* @noEscape */ $shippingAddress->getName() ?><br>
+                <?php if (!empty($shippingAddress->getCompany())) :?>
+                    <?= /* @noEscape */ $shippingAddress->getCompany() ?><br>
+                <?php endif; ?>
+                <?= /* @noEscape */ $viewModel->getStreetFull($shippingAddress->getStreet()) ?><br>
+                <?= /* @noEscape */ $shippingAddress->getCity() ?>, <?= /* @noEscape */ $shippingAddress->getPostcode() ?><br>
+                <?= /* @noEscape */ $viewModel->getCountryByCode($shippingAddress->getCountryId()) ?>
+                <?php if (!empty($shippingTelephoneNumber)) :?>
+                <br>
+                T: <a href="tel:<?= /* @noEscape */ $shippingTelephoneNumber ?>"><?= /* @noEscape */ $shippingTelephoneNumber ?></a>
+                <?php endif; ?>
+            </address>
+        </div>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($shippingMethod)) : ?>
+    <div class="cs-last-order-details__box">
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping Method'); ?></span>
+        <div class="cs-last-order-details__box-content"><?= /* @noEscape */ $shippingMethod ?></div>
+    </div>
+<?php endif; ?>

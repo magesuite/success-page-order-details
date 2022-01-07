@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block ifconfig="success_page/order_details/enabled" name="checkout.success.order_details" as="order_details" template="MageSuite_SuccessPageOrderDetails::order-details-modal.phtml" before="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order</argument>
+                </arguments>
+
+                <container name="checkout.success.order_details.section.summary.title" htmlTag="div" htmlClass="cs-last-order-details__section-title" before="checkout.success.order_details.section.summary">
+                    <block name="checkout.success.order_details.section.summary.title.text" class="Magento\Framework\View\Element\Text">
+                        <arguments>
+                            <argument name="text" xsi:type="string" translate="true">Order Summary</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="checkout.success.order_details.section.summary" htmlTag="div" htmlClass="cs-last-order-details__section cs-last-order-details__section--summary" after="-">
+                    <container name="checkout.success.order_details.section.summary.table" htmlClass="cs-last-order-details__totals-table" htmlTag="table" after="-">
+                        <block name="checkout.success.order_details.section.summary.table.content" template="MageSuite_SuccessPageOrderDetails::order-summary.phtml" after="-">
+                            <arguments>
+                                <argument name="view_model" xsi:type="object">MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                </container>
+
+                <container name="checkout.success.order_details.section.shipping.title" htmlTag="div" htmlClass="cs-last-order-details__section-title" before="checkout.success.order_details.section.shipping">
+                    <block name="checkout.success.order_details.section.shipping.title.text" class="Magento\Framework\View\Element\Text">
+                        <arguments>
+                            <argument name="text" xsi:type="string" translate="true">Shipping</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="checkout.success.order_details.section.shipping" htmlTag="div" htmlClass="cs-last-order-details__section cs-last-order-details__section--shipping" after="-">
+                    <block name="checkout.success.order_details.section.shipping.content" template="MageSuite_SuccessPageOrderDetails::shipping-info.phtml" after="-">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order</argument>
+                        </arguments>
+                    </block>
+                </container>
+
+                <container name="checkout.success.order_details.section.payment.title" htmlTag="div" htmlClass="cs-last-order-details__section-title" before="checkout.success.order_details.section.payment">
+                    <block name="checkout.success.order_details.section.payment.title.text" class="Magento\Framework\View\Element\Text">
+                        <arguments>
+                            <argument name="text" xsi:type="string" translate="true">Payment</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="checkout.success.order_details.section.payment" htmlTag="div" htmlClass="cs-last-order-details__section cs-last-order-details__section--payment" after="-">
+                    <block name="checkout.success.order_details.section.payment.content" template="MageSuite_SuccessPageOrderDetails::payment-info.phtml" after="-">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order</argument>
+                        </arguments>
+                    </block>
+                </container>
+
+                <container name="checkout.success.order_details.section.products.title" htmlTag="div" htmlClass="cs-last-order-details__section-title" before="checkout.success.order_details.section.products">
+                    <block name="checkout.success.order_details.section.products.title.text" class="Magento\Framework\View\Element\Text">
+                        <arguments>
+                            <argument name="text" xsi:type="string" translate="true">Orered items</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="checkout.success.order_details.section.products" htmlTag="div" htmlClass="cs-last-order-details__section cs-last-order-details__section--products" after="-">
+                    <block name="checkout.success.order_details.section.products.content" template="MageSuite_SuccessPageOrderDetails::order-items.phtml" after="-">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,29 @@
+<?php
+/** @var \MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order $viewModel */
+$viewModel = $block->getViewModel();
+$items = $viewModel->getItems();
+?>
+<ol class="cs-last-order-details__products">
+    <?php foreach ($items as $orderItem) :
+        $product = $orderItem->getProduct();
+        $productImageUrl = $viewModel->getImageUrl($product);
+        $productName = $orderItem->getName();
+        $qty = (int) $orderItem->getQtyOrdered();
+        $productPrice = $product->getFormattedPrice();
+        ?>
+    <li class="cs-last-order-details__product">
+        <span class="cs-last-order-details__thumbnail-wrapper">
+            <img class="lazyload" src="<?= $block->escapeUrl($productImageUrl) ?>" alt="<?= $block->escapeHtmlAttr($productName) ?>" />
+        </span>
+
+        <div class="cs-last-order-details__product-details">
+            <div class="cs-last-order-details__product-name"><?= /* @noEscape */ $productName ?></div>
+            <div class="cs-last-order-details__product-qty">
+                <span class="cs-last-order-details__qty-label"><?= /* @noEscape */ __('Qty') ?></span>
+                <span class="cs-last-order-details__qty"><?= /* @noEscape */ $qty ?></span>
+            </div>
+            <span class="cs-last-order-details__product-price"><?= /* @noEscape */ $productPrice ?></span>
+        </div>
+    </li>
+    <?php endforeach; ?>
+</ol>

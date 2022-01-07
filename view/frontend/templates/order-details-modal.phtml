@@ -1,0 +1,41 @@
+<?php
+/** @var \MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order $viewModel */
+$viewModel = $block->getViewModel();
+$order = $viewModel->getOrder();
+$orderId = $order->getRealOrderId();
+?>
+<button class="cs-last-order-details__button">
+    <span><?= /* @noEscape */ __('See order details'); ?></span>
+</button>
+
+<div
+    class="cs-last-order-details__modal"
+    data-bind="mageInit: {
+        'Magento_Ui/js/modal/modal':{
+        'type': 'popup',
+        'title': '<?= $block->escapeHtml(__('Order: %1', $orderId), ['span']); ?>',
+        'trigger': '.cs-last-order-details__button',
+        'modalClass': 'cs-custom-modal',
+        'responsive': true,
+        'modalCloseBtn': '.cs-custom-modal__close',
+        'modalLeftMargin': 0,
+        'innerScroll': true,
+        'buttons': [],
+        'focus': '.cs-last-order-details__details-modal .cs-custom-modal__close'
+    }}"
+    style="display: none"
+>
+    <div class="cs-custom-modal__close">
+        <?= $block->getLayout()
+            ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
+            ->setIconUrl('images/icons/close.svg')
+            ->setCssClass('cs-custom-modal__close-icon')
+            ->setInlined(true)
+            ->setLazyLoaded(true)
+            ->toHtml();
+        ?>
+    </div>
+    <div class="cs-custom-modal__content" data-role="content">
+        <?=  $block->getChildHtml(); ?>
+    </div>
+</div>

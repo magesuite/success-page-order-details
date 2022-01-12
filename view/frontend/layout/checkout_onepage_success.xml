@@ -57,7 +57,7 @@
                 <container name="checkout.success.order_details.section.products.title" htmlTag="div" htmlClass="cs-last-order-details__section-title" before="checkout.success.order_details.section.products">
                     <block name="checkout.success.order_details.section.products.title.text" class="Magento\Framework\View\Element\Text">
                         <arguments>
-                            <argument name="text" xsi:type="string" translate="true">Orered items</argument>
+                            <argument name="text" xsi:type="string" translate="true">Ordered items</argument>
                         </arguments>
                     </block>
                 </container>

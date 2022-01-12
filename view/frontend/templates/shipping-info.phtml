@@ -8,7 +8,7 @@ $shippingTelephoneNumber = $shippingAddress->getTelephone();
 
 <?php if ($shippingAddress) : ?>
     <div class="cs-last-order-details__box">
-        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping address'); ?></span>
+        <span class="cs-last-order-details__box-title"><?= /* @noEscape */ __('Shipping Address'); ?></span>
         <div class="cs-last-order-details__box-content">
             <address><?= /* @noEscape */ $shippingAddress->getName() ?><br>
                 <?php if (!empty($shippingAddress->getCompany())) :?>

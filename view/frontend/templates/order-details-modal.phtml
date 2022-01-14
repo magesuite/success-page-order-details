@@ -15,27 +15,15 @@ $orderId = $order->getRealOrderId();
         'type': 'popup',
         'title': '<?= $block->escapeHtml(__('Order: %1', $orderId), ['span']); ?>',
         'trigger': '.cs-last-order-details__button',
-        'modalClass': 'cs-custom-modal',
         'responsive': true,
-        'modalCloseBtn': '.cs-custom-modal__close',
         'modalLeftMargin': 0,
         'innerScroll': true,
         'buttons': [],
-        'focus': '.cs-last-order-details__details-modal .cs-custom-modal__close'
+        'focus': '.cs-last-order-details__modal .action-close'
     }}"
     style="display: none"
 >
-    <div class="cs-custom-modal__close">
-        <?= $block->getLayout()
-            ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
-            ->setIconUrl('images/icons/close.svg')
-            ->setCssClass('cs-custom-modal__close-icon')
-            ->setInlined(true)
-            ->setLazyLoaded(true)
-            ->toHtml();
-        ?>
-    </div>
-    <div class="cs-custom-modal__content" data-role="content">
+    <div data-role="content">
         <?=  $block->getChildHtml(); ?>
     </div>
 </div>

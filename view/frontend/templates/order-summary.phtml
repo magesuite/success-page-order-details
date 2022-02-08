@@ -1,10 +1,1 @@
-<?php
-/** @var \MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success\Order $viewModel */
-$viewModel = $block->getViewModel();
-
-echo $block->getLayout()
-    ->createBlock(\Magento\Sales\Block\Order\Totals::class)
-    ->setOrder($viewModel->getOrder())
-    ->setTemplate('Magento_Sales::order/totals.phtml')
-    ->toHtml();
-?>
+<?=$block->getViewModel()->getSummaryBlock($block)->toHtml();

@@ -5,29 +5,24 @@ namespace MageSuite\SuccessPageOrderDetails\ViewModel\Checkout\Success;
 
 class Order implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-    /**
-     * @var \Magento\Checkout\Model\Session
-     */
-    protected $checkoutSession;
+    protected \Magento\Checkout\Model\Session $checkoutSession;
 
-    /**
-     * @var \Magento\Directory\Model\CountryFactory
-     */
-    protected $countryFactory;
+    protected \Magento\Directory\Model\CountryFactory $countryFactory;
 
-    /**
-     * @var \Magento\Catalog\Helper\Image
-     */
-    protected $imageHelper;
+    protected \Magento\Catalog\Helper\Image $imageHelper;
+
+    protected \MageSuite\SuccessPageOrderDetails\Helper\SummaryBlockCreator $summaryBlockCreator;
 
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Directory\Model\CountryFactory $countryFactory,
-        \Magento\Catalog\Helper\Image $imageHelper
+        \Magento\Catalog\Helper\Image $imageHelper,
+        \MageSuite\SuccessPageOrderDetails\Helper\SummaryBlockCreator $summaryBlockCreator
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->countryFactory = $countryFactory;
         $this->imageHelper = $imageHelper;
+        $this->summaryBlockCreator = $summaryBlockCreator;
     }
 
     public function getOrder(): \Magento\Sales\Model\Order
@@ -92,6 +87,11 @@ class Order implements \Magento\Framework\View\Element\Block\ArgumentInterface
             return null;
         }
 
-        return $productImage = $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl();
+        return $this->imageHelper->init($product, 'product_thumbnail_image')->getUrl();
+    }
+
+    public function getSummaryBlock(\Magento\Framework\View\Element\Template $block): \Magento\Sales\Block\Order\Totals
+    {
+        return $this->summaryBlockCreator->create($this, $block);
     }
 }

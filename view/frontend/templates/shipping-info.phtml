@@ -3,7 +3,7 @@
 $viewModel = $block->getViewModel();
 $shippingAddress = $viewModel->getShippingAddress();
 $shippingMethod = $viewModel->getShippingMethod();
-$shippingTelephoneNumber = $shippingAddress->getTelephone();
+$shippingTelephoneNumber = $shippingAddress ? $shippingAddress->getTelephone() : null;
 ?>
 
 <?php if ($shippingAddress) : ?>

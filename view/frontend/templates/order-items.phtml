@@ -9,21 +9,21 @@ $items = $viewModel->getItems();
         $productImageUrl = $viewModel->getImageUrl($product);
         $productName = $orderItem->getName();
         $qty = (int) $orderItem->getQtyOrdered();
-        $productPrice = $product->getFormattedPrice();
+        $productPrice = $orderItem->getPriceInclTax();
         ?>
-    <li class="cs-last-order-details__product">
+        <li class="cs-last-order-details__product">
         <span class="cs-last-order-details__thumbnail-wrapper">
             <img loading="lazy" src="<?= $block->escapeUrl($productImageUrl) ?>" alt="<?= $block->escapeHtmlAttr($productName) ?>" />
         </span>
 
-        <div class="cs-last-order-details__product-details">
-            <div class="cs-last-order-details__product-name"><?= /* @noEscape */ $productName ?></div>
-            <div class="cs-last-order-details__product-qty">
-                <span class="cs-last-order-details__qty-label"><?= /* @noEscape */ __('Qty') ?></span>
-                <span class="cs-last-order-details__qty"><?= /* @noEscape */ $qty ?></span>
+            <div class="cs-last-order-details__product-details">
+                <div class="cs-last-order-details__product-name"><?= /* @noEscape */ $productName ?></div>
+                <div class="cs-last-order-details__product-qty">
+                    <span class="cs-last-order-details__qty-label"><?= /* @noEscape */ __('Qty') ?></span>
+                    <span class="cs-last-order-details__qty"><?= /* @noEscape */ $qty ?></span>
+                </div>
+                <span class="cs-last-order-details__product-price"><?= /* @noEscape */ $viewModel->formatPrice($productPrice) ?></span>
             </div>
-            <span class="cs-last-order-details__product-price"><?= /* @noEscape */ $productPrice ?></span>
-        </div>
-    </li>
+        </li>
     <?php endforeach; ?>
 </ol>

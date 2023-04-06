@@ -13,16 +13,20 @@ class Order implements \Magento\Framework\View\Element\Block\ArgumentInterface
 
     protected \MageSuite\SuccessPageOrderDetails\Helper\SummaryBlockCreator $summaryBlockCreator;
 
+    protected \Magento\Framework\Pricing\Helper\Data $priceHelper;
+
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Directory\Model\CountryFactory $countryFactory,
         \Magento\Catalog\Helper\Image $imageHelper,
-        \MageSuite\SuccessPageOrderDetails\Helper\SummaryBlockCreator $summaryBlockCreator
+        \MageSuite\SuccessPageOrderDetails\Helper\SummaryBlockCreator $summaryBlockCreator,
+        \Magento\Framework\Pricing\Helper\Data $priceHelper
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->countryFactory = $countryFactory;
         $this->imageHelper = $imageHelper;
         $this->summaryBlockCreator = $summaryBlockCreator;
+        $this->priceHelper = $priceHelper;
     }
 
     public function getOrder(): \Magento\Sales\Model\Order
@@ -93,5 +97,10 @@ class Order implements \Magento\Framework\View\Element\Block\ArgumentInterface
     public function getSummaryBlock(\Magento\Framework\View\Element\Template $block): \Magento\Sales\Block\Order\Totals
     {
         return $this->summaryBlockCreator->create($this, $block);
+    }
+
+    public function formatPrice($price)
+    {
+        return $this->priceHelper->currency($price, true, false);
     }
 }
